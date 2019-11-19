@@ -1,0 +1,48 @@
+//------------------------------------------------------------------------------
+//
+//   Copyright 2019 Fetch.AI Limited
+//
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+//
+//------------------------------------------------------------------------------
+
+// This contract require release v0.9.1 or above
+// Note that this is experimental functionality
+
+persistent adopters : Array<Address>;
+
+
+@action
+function adopt(petId: Int32) : Int32
+
+    use adopters;
+    var adopt_arr = adopters.get();
+
+    // assert(petId.toInt32() >= 0 && petId.toInt32() <= 15);
+
+    var sender_addr = getContext().transaction().from();
+    adopt_arr[petId] = sender_addr;
+    adopters.set(adopt_arr);
+
+    return petId;
+
+endfunction
+
+
+@query
+function getAdopters() : Array<Address>
+
+    use adopters;
+    return adopters.get();
+
+endfunction
