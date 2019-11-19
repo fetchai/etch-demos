@@ -8,4 +8,10 @@ https://vyper.readthedocs.io/en/v0.1.0-beta.13/vyper-by-example.html#simple-open
 It may be migrated to etch-examples: https://github.com/fetchai/etch-examples
 
 
-## Steps
+### Steps
+
+1) Spin-up a local Fetch ledger
+2) Git clone local copy
+3) Run `cd etch-demos/demos`
+4) Run `python deploy.py pet` to deploy pet-shop contract or `python deploy.py soa` to deploy simple-open-auction contract.
+5) Use test.py to interact with the deployed contract.
