@@ -55,9 +55,9 @@ function bid()
     assert(sender_value > highestBid.get(), "There already is a higher bid.");
 
     if(highestBid.get() != 0u64)
-        use highestBid;
-        use pendingReturns[highestBidder];
-        pendingReturns.get(highestBidder) += highestBid.get();
+        var highestBidderAddress = highestBidder.get();
+        use pendingReturns[highestBidderAddress];
+        pendingReturns.set(highestBidderAddress, currentPendingReturns + highestBid.get());
     endif
 
     highestBidder.set(sender_addr);
