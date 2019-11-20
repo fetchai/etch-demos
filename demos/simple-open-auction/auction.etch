@@ -28,14 +28,14 @@ persistent ended : Bool;
 
 
 @init
-function constructor(_biddingTime: UInt64, _beneficiary: Address)
+function constructor(biddingTime: UInt64, benefitAddr: Address)
 
     use beneficiary;
     use auctionEndTime;
 
-    beneficiary.set(_beneficiary);
+    beneficiary.set(benefitAddr);
     var now = getContext().block().blockNumber();
-    auctionEndTime.set(now + _biddingTime);
+    auctionEndTime.set(now + biddingTime);
 
 endfunction
 
