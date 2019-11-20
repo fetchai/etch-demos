@@ -11,7 +11,7 @@ It may be migrated to etch-examples: https://github.com/fetchai/etch-examples
 ### Steps
 
 1) Spin-up a local Fetch ledger
-2) Git clone local copy
+2) `git clone` a local copy
 3) Run `cd etch-demos/demos`
 4) Run `python deploy.py pet` to deploy pet-shop contract or `python deploy.py soa` to deploy simple-open-auction contract.
-5) Use interact.ipynb Jupyter Notebook to test the interaction of the deployed contract(s).
+5) Use `interact.ipynb` Jupyter Notebook to test the interaction of the deployed contract(s).
