@@ -14,4 +14,4 @@ It may be migrated to etch-examples: https://github.com/fetchai/etch-examples
 2) Git clone local copy
 3) Run `cd etch-demos/demos`
 4) Run `python deploy.py pet` to deploy pet-shop contract or `python deploy.py soa` to deploy simple-open-auction contract.
-5) Use test.py to interact with the deployed contract.
+5) Use interact.ipynb Jupyter Notebook to test the interaction of the deployed contract(s).
