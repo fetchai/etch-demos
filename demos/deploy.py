@@ -15,6 +15,7 @@ def main(source, name):
     # Create keypair for the contract owner
     owner = Entity()
     owner_addr = Address(owner)
+    # print(owner_addr)
 
     # Need funds to deploy contract
     api.sync(api.tokens.wealth(owner, 20000))
