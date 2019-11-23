@@ -34,7 +34,7 @@ function constructor(benefitAddr: Address)
     use auctionEndTime;
 
     beneficiary.set(benefitAddr);
-    var now = getContext().block().blockNumber();
+    var now : UInt64 = getContext().block().blockNumber();
     var biddingTime : UInt64 = 200;
     auctionEndTime.set(now + biddingTime);
 
