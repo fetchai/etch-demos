@@ -48,3 +48,15 @@ function getAdopters() : Array<Address>
     return adopters.get();
 
 endfunction
+
+
+@query
+function getAdoptersString() : String
+    use adopters;
+    var adopters_array = adopters.get();
+    var text = "";
+    for (i in 0:adopters_array.count())
+        text += toString(adopters_array[i])
+    endfor
+    return text;
+endfunction
