@@ -16,10 +16,19 @@
 //
 //------------------------------------------------------------------------------
 
-// This contract require release v0.9.1 or above
+// This contract require release v0.10.1 alpha or above
 // Note that this is experimental functionality
 
 persistent adopters : Array<Address>;
+
+
+@init
+function constructor()
+
+    use adopters;
+    adopters.set(Array<Address>(16));
+
+endfunction
 
 
 @action
@@ -47,16 +56,4 @@ function getAdopters() : Array<Address>
     use adopters;
     return adopters.get();
 
-endfunction
-
-
-@query
-function getAdoptersString() : String
-    use adopters;
-    var adopters_array = adopters.get();
-    var text = "";
-    for (i in 0:adopters_array.count())
-        text += toString(adopters_array[i])
-    endfor
-    return text;
 endfunction

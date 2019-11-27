@@ -1,4 +1,4 @@
-//------------------------------------------------------------------------------
+ //------------------------------------------------------------------------------
 //
 //   Copyright 2019 Fetch.AI Limited
 //
@@ -35,7 +35,7 @@ function constructor(benefitAddr: Address)
 
     beneficiary.set(benefitAddr);
     var now : UInt64 = getContext().block().blockNumber();
-    var biddingTime : UInt64 = 200;
+    var biddingTime : UInt64 = 200u64;
     auctionEndTime.set(now + biddingTime);
 
 endfunction
