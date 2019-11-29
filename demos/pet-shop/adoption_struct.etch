@@ -19,19 +19,49 @@
 // This contract require release v0.10.1 alpha or above
 // Note that this is experimental functionality
 
-persistent adopters : Array<Int32>;
+persistent adopters : StructuredData;
 
 
 @init
 function constructor(owner : Address)
 
     use adopters;
-    var myArray = Array<Int32>(5);
-    myArray[0] = 0;
-    myArray[1] = 0;
-    myArray[2] = 0;
-    myArray[3] = 0;
-    myArray[4] = 0;
-    adopters.set(myArray);
+    adopters.set(StructuredData());
+
+endfunction
+
+
+@action
+function adopt(adopter : Address, petId: Int32) : Int32
+
+    use adopters;
+    var adopt_struct = adopters.get();
+
+    assert(petId >= 0 && petId <= 15);
+
+    // var sender_addr = getContext().transaction().from();
+    adopt_struct.set(toString(petId), adopter);
+    adopters.set(adopt_struct);
+
+    return petId;
+
+endfunction
+
+
+@query
+function getAdopters() : StructuredData
+
+    use adopters;
+    return adopters.get();
+
+endfunction
+
+
+@query
+function getAdopterOfPet(petId: Int32) : Address
+
+    use adopters;
+    var adopt_struct = adopters.get();
+    return adopt_struct.getAddress(toString(petId));
 
 endfunction
