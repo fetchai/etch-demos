@@ -19,20 +19,14 @@
 // This contract require release v0.10.1 alpha or above
 // Note that this is experimental functionality
 
-persistent adopters : Array<Address>;
+persistent adopters : Map<Int32, Address>;
 
 
 @init
 function constructor(owner : Address)
 
     use adopters;
-    var adopt_arr = Array<Address>(16);
-
-    for (i in 0:adopt_arr.count())
-        adopt_arr[i] = null;
-    endfor
-
-    adopters.set(adopt_arr);
+    adopters.set(Map<Int32, Address>());
 
 endfunction
 
@@ -41,15 +35,15 @@ endfunction
 function adopt(petId: Int32) : Int32
 
     use adopters;
-    var adopt_arr = adopters.get();
+    var adopt_map = adopters.get();
 
     // assert(petId >= 0 && petId <= 15);
     assert(petId >= 0);
     assert(petId <= 15);
 
     var sender_addr = getContext().transaction().from();
-    adopt_arr[petId] = sender_addr;
-    adopters.set(adopt_arr);
+    adopt_map[petId] = sender_addr;
+    adopters.set(adopt_map);
 
     return petId;
 
@@ -57,10 +51,22 @@ endfunction
 
 
 @query
-function getAdopters() : Array<Address>
+function getAdopters() : Map<Int32, Address>
 
     use adopters;
-    // printLn(adopters.get());
+    var adopt_map = adopters.get();
+    //printLn(toString(adopt_map[10]));
+    //return adopters.count();
     return adopters.get();
+
+endfunction
+
+
+@query
+function getAdopterOfPet(petId: Int32) : Address
+
+    use adopters;
+    var adopt_map = adopters.get();
+    return adopt_map[petId];
 
 endfunction

@@ -32,11 +32,16 @@ function constructor(benefitAddr: Address)
 
     use beneficiary;
     use auctionEndTime;
+    use highestBidder;
+    use highestBid;
 
     beneficiary.set(benefitAddr);
     var now : UInt64 = getContext().block().blockNumber();
     var biddingTime : UInt64 = 200u64;
     auctionEndTime.set(now + biddingTime);
+
+    highestBidder.set(null);
+    highestBid.set(0u64);
 
 endfunction
 
@@ -58,7 +63,8 @@ function bid()
     if(highestBid.get() != 0u64)
         var highestBidderAddress = highestBidder.get();
         use pendingReturns[highestBidderAddress];
-        pendingReturns.set(highestBidderAddress, currentPendingReturns + highestBid.get());
+        pendingReturns.set(highestBidderAddress, highestBid.get());
+        // pendingReturns.set(highestBidderAddress, currentPendingReturns + highestBid.get());
     endif
 
     highestBidder.set(sender_addr);

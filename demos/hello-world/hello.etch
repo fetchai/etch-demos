@@ -19,48 +19,31 @@
 // This contract require release v0.10.1 alpha or above
 // Note that this is experimental functionality
 
-persistent adopters : Array<Address>;
-
 
 @init
-function constructor(owner : Address)
+function createMessage(owner : Address)
 
-    use adopters;
-    var adopt_arr = Array<Address>(16);
+    var name : String = "world";
+    var state = State<String>("greetings");
+    state.set(name);
 
-    for (i in 0:adopt_arr.count())
-        adopt_arr[i] = null;
-    endfor
-
-    adopters.set(adopt_arr);
 
 endfunction
 
 
 @action
-function adopt(petId: Int32) : Int32
+function changeGreeting(recipient: String)
 
-    use adopters;
-    var adopt_arr = adopters.get();
-
-    // assert(petId >= 0 && petId <= 15);
-    assert(petId >= 0);
-    assert(petId <= 15);
-
-    var sender_addr = getContext().transaction().from();
-    adopt_arr[petId] = sender_addr;
-    adopters.set(adopt_arr);
-
-    return petId;
+    var state = State<String>("greetings");
+    state.set(recipient);
 
 endfunction
 
 
 @query
-function getAdopters() : Array<Address>
+function persistentGreeting() : String
 
-    use adopters;
-    // printLn(adopters.get());
-    return adopters.get();
+    var state = State<String>("greetings");
+    return "Hello, " + state.get() + "!";
 
 endfunction

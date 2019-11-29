@@ -19,48 +19,19 @@
 // This contract require release v0.10.1 alpha or above
 // Note that this is experimental functionality
 
-persistent adopters : Array<Address>;
+persistent adopters : Array<Int32>;
 
 
 @init
 function constructor(owner : Address)
 
     use adopters;
-    var adopt_arr = Array<Address>(16);
-
-    for (i in 0:adopt_arr.count())
-        adopt_arr[i] = null;
-    endfor
-
-    adopters.set(adopt_arr);
-
-endfunction
-
-
-@action
-function adopt(petId: Int32) : Int32
-
-    use adopters;
-    var adopt_arr = adopters.get();
-
-    // assert(petId >= 0 && petId <= 15);
-    assert(petId >= 0);
-    assert(petId <= 15);
-
-    var sender_addr = getContext().transaction().from();
-    adopt_arr[petId] = sender_addr;
-    adopters.set(adopt_arr);
-
-    return petId;
-
-endfunction
-
-
-@query
-function getAdopters() : Array<Address>
-
-    use adopters;
-    // printLn(adopters.get());
-    return adopters.get();
+    var myArray = Array<Int32>(5);
+    myArray[0] = 0;
+    myArray[1] = 0;
+    myArray[2] = 0;
+    myArray[3] = 0;
+    myArray[4] = 0;
+    adopters.set(myArray);
 
 endfunction
