@@ -12,7 +12,7 @@ pip install fetchai-ledger-api
 ```
 3) Run `git clone` this repo to your local directory
 4) Run `cd etch-demos/app/`
-5) Run `python start.py` to start the app on the localhost. You should see the following message on your console:
+5) Run `python start.py` to start the app on your localhost. You should see the following message on your console:
 ```
  * Serving Flask app "start" (lazy loading)
  * Environment: production
