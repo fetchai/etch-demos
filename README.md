@@ -7,7 +7,7 @@ Easily spin-up a browser-based app locally to deploy and interact with your Etch
 1) Spin-up a local Fetch ledger. See Fetch's Getting Started doc [here](https://docs.fetch.ai/getting-started/quickstart/).
 2) Install the following packages:
 ```
-pip install Flask
+pip install flask
 pip install fetchai-ledger-api
 ```
 3) Run `git clone` this repo to your local directory
