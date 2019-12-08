@@ -1,4 +1,4 @@
-# Interactive Etch Prototyping App with Demo Contracts
+# Web-based Etch Prototyping App with Demo Contracts
 
 Easily spin-up a browser-based app locally to deploy and interact with your Etch contract using Python Flask. This allow for rapid prototyping and QA testing through a UI/UX. This is loosely based off of [Ethereum Remix](https://remix.ethereum.org/) IDE.
 
