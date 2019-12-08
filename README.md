@@ -29,13 +29,19 @@ pip install fetchai-ledger-api
 
 ### Sample Etch Contracts
 
-This repo comes with three sample Etch contracts that you can use to experiment with the app. More samples will be added.
+This repo comes with three sample Etch contracts that you can use to experiment with the app. More samples will be added as more functionalities are added in the Etch language.
 
-1) **Hello World** See contract at [hello.etch](https://github.com/fetchai/etch-demos/blob/master/demos/hello-world/hello.etch).
+1) **Hello World** dApp. See contract at [hello.etch](https://github.com/fetchai/etch-demos/blob/master/demos/hello-world/hello.etch).
 2) **Pet Shop** dApp from the Truffle [tutorial](https://www.trufflesuite.com/tutorials/pet-shop). See contract at [adoption.etch](https://github.com/fetchai/etch-demos/blob/master/demos/pet-shop/adoption.etch).
-3) **Simple Open Auction** dApp from the Ethereum Vyper [tutorial](https://vyper.readthedocs.io/en/v0.1.0-beta.13/vyper-by-example.html#simple-open-auction). See contract at [auction](https://github.com/fetchai/etch-demos/blob/master/demos/simple-open-auction/auction.etch).
+3) **Simple Open Auction** dApp from the Ethereum Vyper [tutorial](https://vyper.readthedocs.io/en/v0.1.0-beta.13/vyper-by-example.html#simple-open-auction). See contract at [auction.etch](https://github.com/fetchai/etch-demos/blob/master/demos/simple-open-auction/auction.etch).
 
-It may be migrated to etch-examples: https://github.com/fetchai/etch-examples
+
+### Full Walkthrough Guide
+
+For an end-to-end walkthrough from how create your Etch contract to how to deploy and interact with it on-chain with the Python [SDK](https://github.com/fetchai/ledger-api-py), go to the following Jupyter Notebook [guide](https://github.com/fetchai/etch-demos/blob/master/demos/guide.ipynb). This is basically how the this prototyping app executes under-the-hood.
+
+
+Note: The following repo may be migrated to etch-examples: https://github.com/fetchai/etch-examples
 
 
 
