@@ -37,7 +37,38 @@
       </div>
     </header>
     <div>
-      <h>This is the Info page.</h>
+      <b>Step 1: </b>
+      <h>Make sure that you have ledger running locally. This app will support ledger networks later on.</h>
+      <br/><br/>
+      <b>Step 2: </b>
+      <h>Go to Test Connection link and click on Test button. If you see a "successful" pop-up, you may proceed.</h>
+      <br/><br/>
+      <b>Step 3: </b>
+      <h>Go to Deploy Contract link. Click on Choose File and select adoption.etch from etch-demos Github. </h>
+      <h>The source code will automatically populate in textarea. Click Deploy, wait a few second, and you will see </h>
+      <h>a "deployed" page. Once there, put http://127.0.0.1:5000/ as link to go back to home page. </h>
+      <br/><br/>
+      <b>Step 4: </b>
+      <h>Go to Deploy Contract link. Repeat Step 3 but this time deploy hello.etch from etch-demos.</h>
+      <b>Step 5: </b>
+      <h>Go to Interact with Contract link. You should see the latest block info in the Ledger section. This will update </h>
+      <h>everytime you refresh the "/interact" page. You will also see the all the contract names you deployed in the dropdown </h>
+      <h>to the right of "Select Contract:". Each contract has an owner (type Entity), which you can find the dropdown to the </h>
+      <h>to the right of "Select entity to execute function:". They will automatically update with each new deployed contract.</h>
+      <br/><br/>
+      <b>Step 6: </b>
+      <h>To add a new non-owner Entity, type in the Entity name in the textbox in the Entity section and click the Add button. </h>
+      <h>Once you go back to the "/interact" page, the new Entity name will appear in the dropdown. </h>
+      <br/><br/>
+      <b>Step 7: </b>
+      <h>By default, in the Contract Section, the selected contract is "hello", selected action is "@query", and selected </h>
+      <h>function is "persistentGreeting". If that is the case, feel free the press the Execute button without touching the </h>
+      <h>[tx fee] or [arg1] textboxes. You should see a new page with "Hello World!" as that is the current result of the </h>
+      <h>persistentGreeting function from the hello.etch contract you have deployed onto the ledger.</h>
+      <br/><br/>
+      <b>Note: </b>
+      <h>This app is still WIP. For example, it does not support @action function. The next step is for the "/interact" page to </h>
+      <h>to dynamically update whenever the user changes a dropdown value in the Contract Section. </h>
       <br/><br/>
       <a href="{{ url_for('home') }}">Back to Home</a>
     </div>
