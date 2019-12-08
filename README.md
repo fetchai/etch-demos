@@ -39,9 +39,3 @@ This repo comes with three sample Etch contracts that you can use to experiment 
 ### Full Walkthrough Guide
 
 For an end-to-end walkthrough from how create your Etch contract to how to deploy and interact with it on-chain with the Python [SDK](https://github.com/fetchai/ledger-api-py), go to the following Jupyter Notebook [guide](https://github.com/fetchai/etch-demos/blob/master/demos/guide.ipynb). This is basically how the this prototyping app executes under-the-hood.
-
-
-Note: The following repo may be migrated to etch-examples: https://github.com/fetchai/etch-examples
-
-
-
