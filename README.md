@@ -29,7 +29,7 @@ pip install fetchai-ledger-api
 
 ### Sample Etch Contracts
 
-This repo comes with three sample Etch contracts that you can use to experiment with the app. More samples will be added as more functionalities are added in the Etch language.
+This repo comes with three sample Etch contracts that you can use to experiment with the app. More samples will be added as more synergetic and ML-based functionalities are added into the Etch language.
 
 1) **Hello World** dApp. See contract at [hello.etch](https://github.com/fetchai/etch-demos/blob/master/demos/hello-world/hello.etch).
 2) **Pet Shop** dApp based from the Truffle [tutorial](https://www.trufflesuite.com/tutorials/pet-shop). See contract at [adoption.etch](https://github.com/fetchai/etch-demos/blob/master/demos/pet-shop/adoption.etch).
