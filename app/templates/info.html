@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>About Etch</title>
+    <style>
+      p.groove {
+        border-style: groove;
+      }
+      hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 2.5px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h2 class="logo" style="background-color:lightblue">
+          Simple Interactive Etch Demo
+        </h2>
+        <strong>
+          <nav>
+            <ul class="menu">
+              <li><a href="{{ url_for('info') }}">Info</a></li>
+              <li><a href="{{ url_for('test') }}">Test Connection</a></li>
+              <li><a href="{{ url_for('deploy') }}">Deploy Contract</a></li>
+              <li><a href="{{ url_for('interact') }}">Interact with Contract</a></li>
+            </ul>
+          </nav>
+        </strong>
+        <hr />
+      </div>
+    </header>
+    <div>
+      <h>This is the Info page.</h>
+      <br/><br/>
+      <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+  </body>
+</html>

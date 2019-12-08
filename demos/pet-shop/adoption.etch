@@ -32,15 +32,15 @@ endfunction
 
 
 @action
-function adopt(adopter : Address, petId: Int32) : Int32
+function adopt(petId: Int32) : Int32
 
     use adopters;
     var adopt_struct = adopters.get();
 
     assert(petId >= 0 && petId <= 15, "Valid indexes are between 0-15.");
 
-    // var sender_addr = getContext().transaction().from();
-    adopt_struct.set(toString(petId), adopter);
+    var sender_addr = getContext().transaction().from();
+    adopt_struct.set(toString(petId), sender_addr);
     adopters.set(adopt_struct);
 
     return petId;

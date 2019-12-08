@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Deploy a Contract</title>
+    <style>
+      p.groove {
+        border-style: groove;
+      }
+      hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 2.5px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+      }
+      .tab {
+        margin-left: 10px;
+      }
+    </style>
+    <script type="text/javascript">
+      function onFileLoad(elementValue, event) {
+        document.getElementById(elementValue).textContent = event.target.result;
+      }
+
+      function onChooseFile(event, onLoadFileHandler, elementName) {
+        if (typeof window.FileReader !== "function")
+          throw "The file API isn't supported on this browser.";
+        let input = event.target;
+        if (!input)
+          throw "The browser does not properly implement the event object";
+        if (!input.files)
+          throw "This browser does not support the `files` property of the file input.";
+        if (!input.files[0]) return undefined;
+        let file = input.files[0];
+        document.getElementById(elementName).value = file.name.split(
+          /\.(?=[^\.]+$)/
+        )[0];
+        let fr = new FileReader();
+        fr.onload = onLoadFileHandler;
+        fr.readAsText(file);
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h2 class="logo" style="background-color:lightblue">
+          Simple Interactive Etch Demo
+        </h2>
+        <strong>
+          <nav>
+            <ul class="menu">
+              <li><a href="{{ url_for('info') }}">Info</a></li>
+              <li><a href="{{ url_for('test') }}">Test Connection</a></li>
+              <li><a href="{{ url_for('deploy') }}">Deploy Contract</a></li>
+              <li>
+                <a href="{{ url_for('interact') }}">Interact with Contract</a>
+              </li>
+            </ul>
+          </nav>
+        </strong>
+        <hr />
+      </div>
+    </header>
+    <div>
+      <h
+        >Select a file to upload (optional). This will automatically populate
+        the text area below.</h
+      >
+      <form>
+        <dl>
+          <p>
+            <input
+              type="file"
+              onchange="onChooseFile(event, onFileLoad.bind(this, 'etchvalue'), 'etchname')"
+            />
+          </p>
+        </dl>
+      </form>
+      <form action="/deployresult" method="POST">
+        <br />
+        <h>Etch contract name:&nbsp</h>
+        <input
+          name="etchname"
+          id="etchname"
+          type="text"
+          size="12"
+          style="direction: rtl;"
+          value="contract1"
+        />
+        <h>.etch</h>
+        <br /><br />
+        <h
+          >Insert the Etch contract text here. Then press the Deploy button
+          below to execute it on the designated ledger.
+        </h>
+        <br />
+        <textarea
+          name="etchvalue"
+          id="etchvalue"
+          class="longInput"
+          cols="100"
+          rows="50"
+        ></textarea>
+        <input id="btnDeploy" type="submit" value="Deploy" />
+      </form>
+      <br />
+    </div>
+    <div>
+      <br />
+      <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+    <p id="demo"></p>
+  </body>
+</html>

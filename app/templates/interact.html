@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Interact with Contract</title>
+    <style>
+      p.groove {
+        border-style: groove;
+      }
+      hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 2.5px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+      }
+      hrr {
+        display: block;
+        height: 1.25px;
+        border: 0;
+        border-top: 1.5px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+      }
+      .vertical {
+        border-left: 1.75px solid #ccc;
+        height: 200px;
+        position: absolute;
+        left: 60%;
+      }
+      #contract {
+        float: left;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+      }
+      #entity {
+        float: right;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+    <script
+      type="text/javascript"
+      src="http://code.jquery.com/jquery-1.11.1.min.js"
+    ></script>
+    <script>
+      $(document).ready(function() {
+        $("#btnStatus").click(function() {
+          $.ajax({
+            type: "GET",
+            url: "/interactstatus",
+            success: function(data) {
+              event.preventDefault();
+              alert(data);
+            }
+          });
+        });
+      });
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $("a#btnExecute").bind("click", function() {
+          $.getJSON("/interactquery", function(data) {
+            //do nothing
+          });
+          return false;
+        });
+      });
+    </script>
+    <!--
+    <script
+      type="text/javascript"
+      src="http://code.jquery.com/jquery-1.11.1.min.js"
+    ></script>
+    <script>
+      $(document).ready(function() {
+        $("#btnExecute").click(function() {
+          $.ajax({
+            type: "POST",
+            url: "/executeresult",
+            success: function(data) {
+              alert(data);
+            }
+          });
+        });
+      });
+      $(document).ready(function() {
+        $("#btnAdd").click(function() {
+          $.ajax({
+            type: "POST",
+            url: "/addresult",
+            success: function(data) {
+              alert(data);
+            }
+          });
+        });
+      });
+    </script>
+  -->
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h2 class="logo" style="background-color:lightblue">
+          Simple Interactive Etch Demo
+        </h2>
+        <strong>
+          <nav>
+            <ul class="menu">
+              <li><a href="{{ url_for('info') }}">Info</a></li>
+              <li><a href="{{ url_for('test') }}">Test Connection</a></li>
+              <li><a href="{{ url_for('deploy') }}">Deploy Contract</a></li>
+              <li>
+                <a href="{{ url_for('interact') }}">Interact with Contract</a>
+              </li>
+            </ul>
+          </nav>
+        </strong>
+        <hr />
+      </div>
+    </header>
+    <div>
+      <b>Ledger section:</b>
+      <br /><br />
+      <input
+        id="btnStatus"
+        type="submit"
+        value="Status"
+        onclick="ledgerInfo()"
+      />
+      <h>&nbsp&nbsp</h>
+      <h>{{ status }}</h>
+      <br /><br />
+      <hrr />
+    </div>
+    <form action="/executeresult" method="POST">
+      <div id="contract">
+        <b>Contract section:</b>
+        <br />
+        <div>
+          <h>Select contract:&nbsp</h>
+          <select
+            name="contname"
+            method="GET"
+            action="/"
+            style="max-width:80%;"
+          >
+            {% for contractname in contracts.keys() %}
+            <option value="{{ contractname }}" selected
+              >{{ contractname }}</option
+            >
+            {% endfor %}
+          </select>
+        </div>
+        <br />
+        <h>Select function to execute:&nbsp&nbsp[tx fee]&nbsp[arg1] </h>
+        <div>
+          <select name="functype" style="max-width:45%;">
+            <option value="query">@query</option>
+            <option value="action">@action</option>
+          </select>
+          <select
+            name="funcname"
+            method="GET"
+            action="/"
+            style="max-width:80%;"
+          >
+            {% for initfuncname in initfuncnames %}
+            <option value="{{ initfuncname }}" selected
+              >{{ initfuncname }}</option
+            >
+            {% endfor %}
+          </select>
+          <input
+            name="txfee"
+            id="txfee"
+            type="text"
+            size="6"
+            style="direction: rtl;"
+          />
+          <input
+            name="arg1"
+            id="arg1"
+            type="text"
+            size="12"
+            style="direction: rtl;"
+          />
+          <input
+            href="#"
+            id="btnExecute"
+            type="submit"
+            class="btn btn-default"
+            value="Execute"
+          />
+        </div>
+      </div>
+    </form>
+    <div class="vertical"></div>
+    <form action="/addresult" method="POST">
+      <div id="entity">
+        <b>Entity section:</b>
+        <br />
+        <div>
+          <h>New entity name:</h>
+          <input
+            name="newname"
+            id="newname"
+            type="text"
+            size="8"
+            style="direction: rtl;"
+          />
+          <input
+            href="#"
+            id="btnAdd"
+            type="submit"
+            class="btn btn-default"
+            value="Add"
+          />
+        </div>
+        <br />
+        <div>
+          <h>Select entity to execute function:</h>
+          <select
+            name="funcname"
+            method="GET"
+            action="/"
+            style="max-width:80%;"
+          >
+            {% for entityname in entities.keys() %}
+            <option value="{{ entityname }}" selected>{{ entityname }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <br /><br />
+        <h>{{ initentity }}</h>
+      </div>
+    </form>
+    <br style="clear: both;" />
+    <div>
+      <br /><br />
+      <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+  </body>
+</html>

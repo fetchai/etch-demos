@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Connect to Ledger</title>
+    <style>
+      p.groove {
+        border-style: groove;
+      }
+      hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 2.5px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+      }
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+         $(document).ready(function(){
+              $('#btnTest').click(function(){
+                  $.ajax({
+                    type: 'POST',
+                    url: '/testresult',
+                    success: function(data){
+                      alert(data);
+                    }
+                  });
+              });
+         });
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h2 class="logo" style="background-color:lightblue">
+          Simple Interactive Etch Demo
+        </h2>
+        <strong>
+          <nav>
+            <ul class="menu">
+              <li><a href="{{ url_for('info') }}">Info</a></li>
+              <li><a href="{{ url_for('test') }}">Test Connection</a></li>
+              <li><a href="{{ url_for('deploy') }}">Deploy Contract</a></li>
+              <li>
+                <a href="{{ url_for('interact') }}">Interact with Contract</a>
+              </li>
+            </ul>
+          </nav>
+        </strong>
+        <hr />
+      </div>
+    </header>
+    <div>
+      <h>Test that this app is connected to your designed ledger network.&nbsp&nbsp</h>
+      <input type="button" id="btnTest" value="Test">
+      <br /><br />
+      <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+  </body>
+</html>
