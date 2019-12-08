@@ -24,7 +24,7 @@ pip install fetchai-ledger-api
  * Debugger is active!
 ```
 6) Copy-paste this link `http://127.0.0.1:5000/` into the browser of your choice.
-7) Click on `Info` for more detail about how to use this app.
+7) Click on `Info` for more details about how to use this app.
 
 
 ### Sample Etch Contracts
