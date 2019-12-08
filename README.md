@@ -1,6 +1,6 @@
 # Interactive Etch Demo and Prototyping Tool
 
-Easily spin-up your own browser-based app locally to deploy and interact with your Etch contract. This allow for rapid prototyping and QA testing through a UI/UX. This is loosely based off of [Ethereum Remix](https://remix.ethereum.org/) IDE.
+Easily spin-up a browser-based app locally to deploy and interact with your Etch contract using Python Flask. This allow for rapid prototyping and QA testing through a UI/UX. This is loosely based off of [Ethereum Remix](https://remix.ethereum.org/) IDE.
 
 ### Steps for Launching the App
 
