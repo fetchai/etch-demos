@@ -32,8 +32,8 @@ pip install fetchai-ledger-api
 This repo comes with three sample Etch contracts that you can use to experiment with the app. More samples will be added as more functionalities are added in the Etch language.
 
 1) **Hello World** dApp. See contract at [hello.etch](https://github.com/fetchai/etch-demos/blob/master/demos/hello-world/hello.etch).
-2) **Pet Shop** dApp from the Truffle [tutorial](https://www.trufflesuite.com/tutorials/pet-shop). See contract at [adoption.etch](https://github.com/fetchai/etch-demos/blob/master/demos/pet-shop/adoption.etch).
-3) **Simple Open Auction** dApp from the Ethereum Vyper [tutorial](https://vyper.readthedocs.io/en/v0.1.0-beta.13/vyper-by-example.html#simple-open-auction). See contract at [auction.etch](https://github.com/fetchai/etch-demos/blob/master/demos/simple-open-auction/auction.etch).
+2) **Pet Shop** dApp based from the Truffle [tutorial](https://www.trufflesuite.com/tutorials/pet-shop). See contract at [adoption.etch](https://github.com/fetchai/etch-demos/blob/master/demos/pet-shop/adoption.etch).
+3) **Simple Open Auction** dApp based from the Ethereum Vyper [tutorial](https://vyper.readthedocs.io/en/v0.1.0-beta.13/vyper-by-example.html#simple-open-auction). See contract at [auction.etch](https://github.com/fetchai/etch-demos/blob/master/demos/simple-open-auction/auction.etch).
 
 
 ### Full Walkthrough Guide
