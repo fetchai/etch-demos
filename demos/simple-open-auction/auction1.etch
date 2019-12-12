@@ -23,78 +23,74 @@ persistent beneficiary : Address;
 persistent auctionEndTime : UInt64;
 persistent highestBidder : Address;
 persistent highestBid : UInt64;
+persistent minBid : UInt64;
+persistent totalBalance : UInt64;
 persistent sharded pendingReturns : UInt64;
+persistent sharded balance : UInt64;
 persistent ended : Bool;
 
 
 @init
 function constructor(owner: Address)
 
-    use beneficiary;
+    // use beneficiary;
     use auctionEndTime;
     use highestBidder;
     use highestBid;
+    use minBid;
 
-    beneficiary.set(owner);
+    // beneficiary.set(owner);
     var now : UInt64 = getContext().block().blockNumber();
     var biddingTime : UInt64 = 600u64;
     auctionEndTime.set(now + biddingTime);
 
     highestBidder.set(owner);
-    highestBid.set(0u64);
+    highestBid.set(100u64);
+    minBid.set(100u64);
 
 endfunction
 
 
 @action
-function bid()
+function setBeneficiary(bene : Address)
+
+    use beneficiary;
+    beneficiary.set(bene);
+
+endfunction
+
+
+@action
+function bid(amount: UInt64)
 
     use auctionEndTime;
     use highestBidder;
     use highestBid;
+    use minBid;
 
     var tx = getContext().transaction();
-    var sender_addr = tx.from();
-    var sender_value = tx.getTotalTransferAmount();
+    var sender = tx.from();
+    var target = tx.contractAddress();
+    // var amount = tx.getTotalTransferAmount();
     var now = getContext().block().blockNumber();
 
     assert(now <= auctionEndTime.get(), "Auction already ended.");
-    assert(sender_value > highestBid.get(), "There already is a higher bid.");
+    assert(amount > minBid.get(), "Bid must be higher than the min of 100.");
+    assert(amount > highestBid.get(), "There is a higher bid placed already.");
 
-    if(highestBid.get() != 0u64)
+    if(highestBid.get() != 100u64)
         var highestBidderAddress = highestBidder.get();
-        use pendingReturns[highestBidderAddress];
-        pendingReturns.set(highestBidderAddress, highestBid.get());
-        // pendingReturns.set(highestBidderAddress, currentPendingReturns + highestBid.get());
+        // use pendingReturns[highestBidderAddress];
+        // pendingReturns.set(highestBidderAddress, highestBid.get());
     endif
 
-    highestBidder.set(sender_addr);
-    highestBid.set(sender_value);
+    highestBidder.set(sender);
+    highestBid.set(amount);
+
+    transfer(target, amount);
 
 endfunction
 
-/*
-@action
-function withdraw(): Bool
-
-    var tx = getContext().transaction();
-    var receiver_addr = tx.from();
-    use pendingReturns[receiver_addr];
-
-    var amount : UInt64 = pendingReturns.get(receiver_addr);
-    if(amount > 0u64)
-        pendingReturns.set(receiver_addr, 0u64);
-
-        if(!receiver_addr.send(amount))
-            pendingReturns.set(receiver_addr, amount);
-            return false;
-        endif
-
-    endif
-    return true;
-
-endfunction
-*/
 
 @action
 function endAuction()
@@ -110,5 +106,14 @@ function endAuction()
     assert(!ended.get(), "auctionEnd has already been called.");
     ended.set(true);
     transfer(beneficiary.get(), highestBid.get());
+
+endfunction
+
+
+@query
+function highestBid() : UInt64
+
+    use highestBid;
+    return highestBid.get();
 
 endfunction

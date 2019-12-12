@@ -32,7 +32,7 @@ endfunction
 
 
 @action
-function adopt(petId: Int32) : Int32
+function adopt(petId: Int32) : Int64
 
     use adopters;
     var adopt_struct = adopters.get();
@@ -43,7 +43,8 @@ function adopt(petId: Int32) : Int32
     adopt_struct.set(toString(petId), sender_addr);
     adopters.set(adopt_struct);
 
-    return petId;
+    //@action functions must either return Int64 or have no return type
+    return toInt64(petId);
 
 endfunction
 
